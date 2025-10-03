@@ -1,23 +1,51 @@
-# Project Manager App
+# 📱 Project Manager App
 
-An Android app built with Jetpack Compose and Navigation to allow students to 
-create, view, and manage their projects.
+A simple **Jetpack Compose** based project management app.
 
-## Features
-- **Input Screen**: Add project title, description, and image URL.
-- **Detail Screen**: View the details of a selected project.
-- **List Screen**: See all entered projects, delete them, or view details.
-- **Contact Screen**: About/Contact information.
+---
 
-## Tech Stack
-- Android Studio
-- Kotlin
-- Jetpack Compose
-- Material 3
-- Navigation Compose
+## ✨ Features
+- ➕ **Add Project**: Enter Title, Description, and Image URL  
+- 📄 **Project Detail**: View details of a project  
+- 📚 **Project Library**: Browse all projects with **Edit / Delete** options  
+- ℹ️ **About Screen**: Shows basic app information  
 
-## How to Run
-1. Clone this repo:
+---
+
+## 🖼 Wireframe
+Visual layout of the 4 main screens:  
+
+![Wireframe](images/wireframe.png)
+
+---
+
+## 🔄 User Flow
+1. **Add Project**  
+   - User enters Title, Description, and Image URL  
+   - Clicks **Add** → navigates to Project Detail  
+
+2. **Project Detail**  
+   - Displays Title, Description, and Image  
+
+3. **Project Library**  
+   - Shows list of projects  
+   - **Edit** → opens Project Detail  
+   - **Delete** → removes the project  
+
+4. **About**  
+   - Shows app info  
+
+---
+
+## 🛠 Tech Stack
+- **Language**: Kotlin  
+- **UI**: Jetpack Compose + Material 3  
+- **Navigation**: Navigation Compose  
+- **Image Loading**: Coil (AsyncImage for URLs)  
+
+---
+
+## 🚀 Setup
+1. Clone the repo:
    ```bash
    git clone https://github.com/linyueCS-IT/project-manager.git
-   
