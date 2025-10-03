@@ -16,6 +16,7 @@ val LocalNavController = compositionLocalOf<NavHostController> {
 @Composable
 fun Router(){
     val navController = rememberNavController()
+
     CompositionLocalProvider(
         LocalNavController provides navController,
     ) {
