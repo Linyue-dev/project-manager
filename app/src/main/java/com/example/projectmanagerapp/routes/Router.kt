@@ -22,12 +22,12 @@ fun Router(){
     ) {
         NavHost(
             navController = navController,
-            startDestination = "",
+            startDestination = "AddProjectRoute",
         ){
-            composable ("") { }
-            composable ("") { }
-            composable ("") { }
-            composable ("") { }
+            composable ("AddProjectRoute") { }
+            composable ("DetailRoute") { }
+            composable ("LibraryRoute") { }
+            composable ("AboutRoute") { }
         }
     }
 }
