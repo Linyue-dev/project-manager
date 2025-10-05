@@ -16,13 +16,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectmanagerapp.routes.LocalNavController
 import com.example.projectmanagerapp.routes.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
+import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
 @Composable
-fun ProjectCreation (){
+fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
     val navController = LocalNavController.current
     var title by rememberSaveable { mutableStateOf("") }
     var description by rememberSaveable { mutableStateOf("") }

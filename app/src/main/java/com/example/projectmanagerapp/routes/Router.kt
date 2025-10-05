@@ -3,11 +3,13 @@ package com.example.projectmanagerapp.routes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.projectmanagerapp.ui.ProjectCreation
+import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
 // global variable for navigation
@@ -18,6 +20,7 @@ val LocalNavController = compositionLocalOf<NavHostController> {
 @Composable
 fun Router(){
     val navController = rememberNavController()
+    val projectViewModel : ProjectViewModel = viewModel()
 
     CompositionLocalProvider(
         LocalNavController provides navController,
@@ -26,7 +29,7 @@ fun Router(){
             navController = navController,
             startDestination = "AddProjectRoute",
         ){
-            composable ("AddProjectRoute") { ProjectCreation() }
+            composable ("AddProjectRoute") {ProjectCreation(projectViewModel = projectViewModel) }
             composable ("DetailRoute") { }
             composable ("LibraryRoute") { }
             composable ("AboutRoute") { }
