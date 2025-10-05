@@ -5,10 +5,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.projectmanagerapp.ui.ProjectCreation
+import com.example.projectmanagerapp.ui.ProjectDetail
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
@@ -30,9 +33,21 @@ fun Router(){
             startDestination = "AddProjectRoute",
         ){
             composable ("AddProjectRoute") {ProjectCreation(projectViewModel = projectViewModel) }
-            composable ("DetailRoute") { }
+            composable(
+                route = "DetailRoute/{projectId}",
+                arguments = listOf(
+                    navArgument("projectId") {type = NavType.IntType}
+                )
+            ) { backStackEntry ->
+                val projectId = backStackEntry.arguments?.getInt("projectId")?:-1
+                val project = projectViewModel.getProjectById(projectId)
+                if (project != null){
+                    ProjectDetail(project)
+                }
+            }
             composable ("LibraryRoute") { }
             composable ("AboutRoute") { }
         }
     }
 }
+

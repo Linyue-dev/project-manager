@@ -1,6 +1,5 @@
 package com.example.projectmanagerapp.ui
 
-import android.media.midi.MidiDevice
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,6 +8,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -29,6 +29,7 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
     var title by rememberSaveable { mutableStateOf("") }
     var description by rememberSaveable { mutableStateOf("") }
     var imageUrl by rememberSaveable { mutableStateOf("") }
+    var projectId by rememberSaveable { mutableIntStateOf(0) }
 
     MainLayout(
         screenTitle = "Add Project"
@@ -59,10 +60,11 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
             Button(
                 onClick = {
                     if (title.isNotBlank()){
+                        projectId = projectViewModel.addProject(title,description,imageUrl)
                         title = ""
                         description = ""
                         imageUrl = ""
-                        navController.navigate("DetailRoute")
+                        navController.navigate("DetailRoute/$projectId")
                     }
                 },
                 modifier = Modifier.align(Alignment.End)
