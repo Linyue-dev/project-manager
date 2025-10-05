@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.projectmanagerapp.data.Project
 import com.example.projectmanagerapp.routes.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
@@ -27,11 +28,17 @@ fun ProjectDetail(project : Project){
             ) {
                 Text(project.title)
                 Text (project.description)
-                Text(project.imageUrl)
+                AsyncImage(
+                    model = project.imageUrl,
+                    contentDescription = "Project Image",
+                    modifier = Modifier.padding(10.dp)
+                )
             }
         }
     }
 }
+
+
 @Preview(showBackground = true)
 @Composable
 fun ProjectDetailReview() {
@@ -46,3 +53,4 @@ fun ProjectDetailReview() {
         )
     }
 }
+
