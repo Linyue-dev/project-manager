@@ -7,6 +7,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.projectmanagerapp.ui.ProjectCreation
+
 
 // global variable for navigation
 val LocalNavController = compositionLocalOf<NavHostController> {
@@ -24,7 +26,7 @@ fun Router(){
             navController = navController,
             startDestination = "AddProjectRoute",
         ){
-            composable ("AddProjectRoute") { }
+            composable ("AddProjectRoute") { ProjectCreation() }
             composable ("DetailRoute") { }
             composable ("LibraryRoute") { }
             composable ("AboutRoute") { }

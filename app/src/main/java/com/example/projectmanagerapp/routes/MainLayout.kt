@@ -77,7 +77,7 @@ fun SharedBottomBar() {
             }
 
             IconButton(
-                onClick = {navController.navigate("")}
+                onClick = {navController.navigate(Routes.AddProject.routes)}
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -86,7 +86,7 @@ fun SharedBottomBar() {
             }
 
             IconButton(
-                onClick = {navController.navigate("")}
+                onClick = {navController.navigate(Routes.ProjectLibrary.routes)}
             ) {
                 Icon(
                     imageVector = Icons.Default.Inventory,
@@ -95,7 +95,7 @@ fun SharedBottomBar() {
             }
 
             IconButton(
-                onClick = {navController.navigate("")}
+                onClick = {navController.navigate(Routes.About.routes)}
             ) {
                 Icon(
                     imageVector = Icons.Default.Info,
