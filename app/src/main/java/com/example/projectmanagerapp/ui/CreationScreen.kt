@@ -5,11 +5,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -21,6 +24,7 @@ import com.example.projectmanagerapp.routes.LocalNavController
 import com.example.projectmanagerapp.routes.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -31,8 +35,13 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
     var imageUrl by rememberSaveable { mutableStateOf("") }
     var projectId by rememberSaveable { mutableIntStateOf(0) }
 
+    // Add scope
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+
     MainLayout(
-        screenTitle = "Add Project"
+        screenTitle = "Add Project",
+        snackbarHostState = snackbarHostState
     ) {
         Column (
             modifier = Modifier.padding(10.dp)
@@ -65,6 +74,10 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
                         description = ""
                         imageUrl = ""
                         navController.navigate("DetailRoute/$projectId")
+                    } else {
+                        scope.launch {
+                            snackbarHostState.showSnackbar("Please enter a title")
+                        }
                     }
                 },
                 modifier = Modifier.align(Alignment.End)
