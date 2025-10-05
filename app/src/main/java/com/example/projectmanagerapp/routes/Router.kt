@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.projectmanagerapp.ui.ProjectCreation
 import com.example.projectmanagerapp.ui.ProjectDetail
+import com.example.projectmanagerapp.ui.ProjectLibrary
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
@@ -45,7 +46,7 @@ fun Router(){
                     ProjectDetail(project)
                 }
             }
-            composable ("LibraryRoute") { }
+            composable ("LibraryRoute") { ProjectLibrary (projectViewModel = projectViewModel)}
             composable ("AboutRoute") { }
         }
     }
