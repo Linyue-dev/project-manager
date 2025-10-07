@@ -1,7 +1,5 @@
 package com.example.projectmanagerapp.ui
 
-import android.R
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,16 +17,13 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectmanagerapp.routes.LocalNavController
 import com.example.projectmanagerapp.routes.MainLayout
-import com.example.projectmanagerapp.routes.Routes
 import com.example.projectmanagerapp.ui.theme.Shapes
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
@@ -63,7 +58,7 @@ fun ProjectLibrary ( projectViewModel: ProjectViewModel = viewModel()){
                 items(projects){ project ->
                     Card (
                         modifier = Modifier
-                            .padding( top = 10.dp, start = 15.dp, end= 15.dp, bottom = 6.dp)
+                            .padding( top = 20.dp, start = 20.dp, end= 20.dp, bottom = 6.dp)
                             .fillMaxWidth(),
                         shape = MaterialTheme.shapes.large,
                         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -74,15 +69,14 @@ fun ProjectLibrary ( projectViewModel: ProjectViewModel = viewModel()){
                                 style = MaterialTheme.typography.titleMedium,
                                 modifier = Modifier.padding(10.dp),
                                 color = MaterialTheme.colorScheme.primary
-                                )
+                            )
 
                             Spacer(modifier = Modifier.padding(10.dp))
 
                             Text(
                                 text = project.description,
                                 style = MaterialTheme.typography.bodyMedium,
-                                modifier = Modifier.padding(10.dp),
-                                color = MaterialTheme.colorScheme.primary
+                                modifier = Modifier.padding(10.dp)
                             )
                         }
 
