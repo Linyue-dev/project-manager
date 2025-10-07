@@ -1,9 +1,12 @@
 package com.example.projectmanagerapp.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,6 +16,7 @@ import coil.compose.AsyncImage
 import com.example.projectmanagerapp.data.Project
 import com.example.projectmanagerapp.routes.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
+import com.example.projectmanagerapp.ui.theme.Shapes
 
 @Composable
 fun ProjectDetail(project : Project){
@@ -20,18 +24,32 @@ fun ProjectDetail(project : Project){
         screenTitle = "Project Detail"
     ) {
         Card(
-            modifier = Modifier.padding(10.dp)
-                .fillMaxWidth()
+            modifier = Modifier.padding(20.dp),
+            shape = MaterialTheme.shapes.medium
         ){
             Column(
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier.padding(15.dp)
             ) {
-                Text(project.title)
-                Text (project.description)
+                Text(
+                    text = project.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(8.dp)
+                )
+                Spacer(modifier = Modifier.padding(15.dp))
+                Text (
+                    text = project.description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.padding(8.dp)
+                )
                 AsyncImage(
                     model = project.imageUrl,
                     contentDescription = "Project Image",
-                    modifier = Modifier.padding(10.dp)
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.surfaceVariant)
                 )
             }
         }
