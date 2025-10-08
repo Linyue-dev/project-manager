@@ -13,6 +13,7 @@ import androidx.navigation.navArgument
 import com.example.projectmanagerapp.ui.ProjectCreation
 import com.example.projectmanagerapp.ui.ProjectDetail
 import com.example.projectmanagerapp.ui.ProjectLibrary
+import com.example.projectmanagerapp.ui.About
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
@@ -47,7 +48,7 @@ fun Router(){
                 }
             }
             composable ("LibraryRoute") { ProjectLibrary (projectViewModel = projectViewModel)}
-            composable ("AboutRoute") { }
+            composable ("AboutRoute") { About() }
         }
     }
 }

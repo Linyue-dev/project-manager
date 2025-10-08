@@ -16,7 +16,6 @@ import coil.compose.AsyncImage
 import com.example.projectmanagerapp.data.Project
 import com.example.projectmanagerapp.routes.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
-import com.example.projectmanagerapp.ui.theme.Shapes
 
 @Composable
 fun ProjectDetail(project : Project){
@@ -25,7 +24,7 @@ fun ProjectDetail(project : Project){
     ) {
         Card(
             modifier = Modifier.padding(20.dp),
-            shape = MaterialTheme.shapes.medium
+            shape = MaterialTheme.shapes.large
         ){
             Column(
                 modifier = Modifier.padding(15.dp)
