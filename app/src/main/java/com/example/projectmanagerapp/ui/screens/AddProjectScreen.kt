@@ -1,4 +1,4 @@
-package com.example.projectmanagerapp.ui
+package com.example.projectmanagerapp.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,13 +23,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectmanagerapp.routes.LocalNavController
-import com.example.projectmanagerapp.routes.MainLayout
+import com.example.projectmanagerapp.ui.components.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 import kotlinx.coroutines.launch
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.ui.graphics.Color
+import com.example.projectmanagerapp.routes.Routes
 
 @Composable
 fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
@@ -107,7 +107,7 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
                         title = ""
                         description = ""
                         imageUrl = ""
-                        navController.navigate("DetailRoute/$projectId")
+                        navController.navigate(Routes.ProjectDetail.go(projectId)) // navController.navigate("DetailRoute/$projectId")
                     } else {
                         scope.launch {
                             snackbarHostState.showSnackbar("Please enter a title")

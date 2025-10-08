@@ -1,4 +1,4 @@
-package com.example.projectmanagerapp.ui
+package com.example.projectmanagerapp.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.projectmanagerapp.data.Project
-import com.example.projectmanagerapp.routes.MainLayout
+import com.example.projectmanagerapp.ui.components.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
 
 @Composable

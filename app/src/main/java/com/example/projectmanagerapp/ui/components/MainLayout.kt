@@ -1,4 +1,4 @@
-package com.example.projectmanagerapp.routes
+package com.example.projectmanagerapp.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,6 +28,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.projectmanagerapp.routes.LocalNavController
+import com.example.projectmanagerapp.routes.Routes
 
 @Composable
 fun MainLayout(

@@ -10,10 +10,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.projectmanagerapp.ui.ProjectCreation
-import com.example.projectmanagerapp.ui.ProjectDetail
-import com.example.projectmanagerapp.ui.ProjectLibrary
-import com.example.projectmanagerapp.ui.About
+import com.example.projectmanagerapp.ui.screens.ProjectCreation
+import com.example.projectmanagerapp.ui.screens.ProjectDetail
+import com.example.projectmanagerapp.ui.screens.ProjectLibrary
+import com.example.projectmanagerapp.ui.screens.About
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
@@ -32,11 +32,11 @@ fun Router(){
     ) {
         NavHost(
             navController = navController,
-            startDestination = "AddProjectRoute",
+            startDestination = Routes.About.routes,
         ){
-            composable ("AddProjectRoute") {ProjectCreation(projectViewModel = projectViewModel) }
+            composable (Routes.AddProject.routes) {ProjectCreation(projectViewModel = projectViewModel) }
             composable(
-                route = "DetailRoute/{projectId}",
+                route = Routes.ProjectDetail.routes, //route = "DetailRoute/{projectId}",
                 arguments = listOf(
                     navArgument("projectId") {type = NavType.IntType}
                 )
@@ -47,8 +47,8 @@ fun Router(){
                     ProjectDetail(project)
                 }
             }
-            composable ("LibraryRoute") { ProjectLibrary (projectViewModel = projectViewModel)}
-            composable ("AboutRoute") { About() }
+            composable (Routes.ProjectLibrary.routes) { ProjectLibrary (projectViewModel = projectViewModel)}
+            composable (Routes.About.routes) { About() }
         }
     }
 }
