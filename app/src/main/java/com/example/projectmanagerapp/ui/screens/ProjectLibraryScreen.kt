@@ -1,5 +1,6 @@
 package com.example.projectmanagerapp.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +13,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material3.Button
@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.projectmanagerapp.data.Project
 import com.example.projectmanagerapp.routes.LocalNavController
 import com.example.projectmanagerapp.ui.components.MainLayout
 import com.example.projectmanagerapp.routes.Routes
@@ -41,102 +42,119 @@ fun ProjectLibrary ( projectViewModel: ProjectViewModel = viewModel()){
         screenTitle = "Project Library"
     ) {
         if (projects.isEmpty()){
-            Card (
+            EmptyProjectList()
+        } else {
+            ProjectList(
+                projects = projectViewModel.projects,
+                onDeleteProject = { projectViewModel.removeProject(it)},
+                onProjectReviewClick = {
+                    navController.navigate(Routes.ProjectDetail.go(it.projectId))
+                }
+            )
+        }
+    }
+}
+
+@Composable
+fun EmptyProjectList(){
+    val navController = LocalNavController.current
+    Card (
+        modifier = Modifier.padding(20.dp)
+            .fillMaxWidth(),
+        shape = MaterialTheme.shapes.medium,
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ){
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Folder,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(80.dp)
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "No Projects Yet",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(10.dp)
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "Start building your portfolio!",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(20.dp)
-                    .fillMaxWidth(),
-                shape = MaterialTheme.shapes.medium,
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Button(
+                onClick = { navController.navigate(Routes.AddProject.routes)}
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Add,
+                    contentDescription = "Add Project",
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun ProjectList(
+    projects: List<Project>,
+    onDeleteProject: (Project) -> Unit,
+    onProjectReviewClick: (Project) -> Unit
+){
+    LazyColumn {
+        items(projects){ project ->
+            Card (
+                modifier = Modifier
+                    .padding( top = 20.dp, start = 20.dp, end= 20.dp, bottom = 6.dp)
+                    .fillMaxWidth()
+                    .clickable {onProjectReviewClick(project)},
+                shape = MaterialTheme.shapes.large,
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ){
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Folder,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(80.dp)
+                Column {
+                    Text(
+                        text = project.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(10.dp),
+                        color = MaterialTheme.colorScheme.primary
                     )
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.padding(10.dp))
 
                     Text(
-                        text = "No Projects Yet",
-                        style = MaterialTheme.typography.headlineSmall,
-                        modifier = Modifier.padding(10.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    Text(
-                        text = "Start building your portfolio!",
+                        text = project.description,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(20.dp)
+                        modifier = Modifier.padding(10.dp),
                     )
+                }
 
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    Button(
-                        onClick = { navController.navigate(Routes.AddProject.routes)}
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                )  {
+                    IconButton(onClick = {
+                        onDeleteProject(project)}
                     ) {
                         Icon(
-                            imageVector = Icons.Outlined.Add,
-                            contentDescription = "Add Project",
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
-            }
-        } else {
-            LazyColumn {
-                items(projects){ project ->
-                    Card (
-                        modifier = Modifier
-                            .padding( top = 20.dp, start = 20.dp, end= 20.dp, bottom = 6.dp)
-                            .fillMaxWidth(),
-                        shape = MaterialTheme.shapes.large,
-                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                    ){
-                        Column {
-                            Text(
-                                text = project.title,
-                                style = MaterialTheme.typography.titleMedium,
-                                modifier = Modifier.padding(10.dp),
-                                color = MaterialTheme.colorScheme.primary
-                                )
-
-                            Spacer(modifier = Modifier.padding(10.dp))
-
-                            Text(
-                                text = project.description,
-                                style = MaterialTheme.typography.bodyMedium,
-                                modifier = Modifier.padding(10.dp),
-                            )
-                        }
-
-                        Row (
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.End
-                        )  {
-                            IconButton(onClick = {
-                                navController.navigate(Routes.ProjectDetail.go(project.projectId))} // navController.navigate("DetailRoute/${project.projectId}")}
-                            ) {
-                                Icon(Icons.Default.Edit, contentDescription = "Edit")
-                            }
-
-                            IconButton(onClick = {
-                                projectViewModel.removeProject(project)}
-                            ) {
-                                Icon(Icons.Default.Delete, contentDescription = "Delete")
-                            }
-                        }
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Delete")
                     }
                 }
             }
         }
     }
 }
-
