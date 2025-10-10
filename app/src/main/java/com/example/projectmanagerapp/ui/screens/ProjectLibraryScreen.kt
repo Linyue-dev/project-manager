@@ -33,6 +33,11 @@ import com.example.projectmanagerapp.ui.components.MainLayout
 import com.example.projectmanagerapp.routes.Routes
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
+/**
+ * Project Library screen.
+ * Shows an empty state if there are no projects,
+ * otherwise displays the project list.
+ */
 @Composable
 fun ProjectLibrary ( projectViewModel: ProjectViewModel = viewModel()){
     val navController = LocalNavController.current
@@ -55,6 +60,10 @@ fun ProjectLibrary ( projectViewModel: ProjectViewModel = viewModel()){
     }
 }
 
+/**
+ * Empty project list view.
+ * Shows an icon, message, and button to add a new project.
+ */
 @Composable
 fun EmptyProjectList(){
     val navController = LocalNavController.current
@@ -109,6 +118,15 @@ fun EmptyProjectList(){
     }
 }
 
+/**
+ * Project list.
+ * Displays a list of projects with title, description,
+ * and options to view details or delete.
+ *
+ * @param projects List of [Project] items to display.
+ * @param onDeleteProject Callback triggered when a project is deleted.
+ * @param onProjectReviewClick Callback triggered when a project card is clicked.
+ */
 @Composable
 fun ProjectList(
     projects: List<Project>,

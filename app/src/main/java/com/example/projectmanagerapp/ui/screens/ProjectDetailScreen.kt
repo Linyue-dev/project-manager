@@ -17,6 +17,13 @@ import com.example.projectmanagerapp.data.Project
 import com.example.projectmanagerapp.ui.components.MainLayout
 import com.example.projectmanagerapp.ui.preview.PreviewManager
 
+/**
+ * Project detail screen.
+ *
+ * Displays detailed information about a selected [Project],
+ * including its title, description, and image.
+ * @param project The [Project] details are displayed
+ */
 @Composable
 fun ProjectDetail(project : Project){
     MainLayout(
@@ -29,6 +36,7 @@ fun ProjectDetail(project : Project){
             Column(
                 modifier = Modifier.padding(15.dp)
             ) {
+                // display project title
                 Text(
                     text = project.title,
                     style = MaterialTheme.typography.titleMedium,
@@ -36,12 +44,16 @@ fun ProjectDetail(project : Project){
                     modifier = Modifier.padding(8.dp)
                 )
                 Spacer(modifier = Modifier.padding(15.dp))
+
+                // display project description
                 Text (
                     text = project.description,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(8.dp)
                 )
+
+                //  display project image
                 AsyncImage(
                     model = project.imageUrl,
                     contentDescription = "Project Image",

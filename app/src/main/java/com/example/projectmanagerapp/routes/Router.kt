@@ -17,11 +17,28 @@ import com.example.projectmanagerapp.ui.screens.About
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
-// global variable for navigation
+/**
+ * Provides access to the current [NavHostController] throughout the app.
+ *
+ * Used with [CompositionLocalProvider] to make [NavController] available
+ * to all composables without passing it explicitly as a parameter.
+ */
 val LocalNavController = compositionLocalOf<NavHostController> {
     error("No NavController provided")
 }
 
+/**
+ * Main navigation router for the app.
+ * Sets up navigation graph using [NavHost] and defines all composable destinations.
+ * Shares a single [ProjectViewModel] instance across screens.
+ *
+ * Routes:
+ * Routes.About -> About Screen
+ * Routes.AddProject -> Add project
+ * Routes.ProjectDetail -> Project detail
+ * Routes.ProjectLibrary -> Project list
+ *
+ */
 @Composable
 fun Router(){
     val navController = rememberNavController()

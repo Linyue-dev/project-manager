@@ -31,6 +31,14 @@ import androidx.compose.ui.unit.dp
 import com.example.projectmanagerapp.routes.LocalNavController
 import com.example.projectmanagerapp.routes.Routes
 
+/**
+ * Main layout wrapper for all screens.
+ * Provides a shared top bar, bottom navigation bar, and optional snackbar host.
+ * Accepts composable content for the main screen body.
+ * @param screenTitle Title displayed in the top bar.
+ * @param snackbarHostState Optional Snackbar host for showing messages.
+ * @param content Main screen content.
+ */
 @Composable
 fun MainLayout(
     screenTitle : String,
@@ -50,6 +58,13 @@ fun MainLayout(
     }
 }
 
+/**
+ * Shared top bar.
+ *
+ * Displays the current screen title and a back button if navigation history exists.
+ * Includes a placeholder menu icon on the right.
+ * @param screenTitle Title displayed in the center of the top app bar.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SharedTopBar(screenTitle : String) {
@@ -84,6 +99,15 @@ fun SharedTopBar(screenTitle : String) {
     )
 }
 
+/**
+ * Shared bottom navigation bar.
+ *
+ *  Provides quick navigation between key screens:
+ *  - About
+ *  - Add Project
+ *  - Project Library
+ *  - Profile/About - for future exploitation
+ */
 @Composable
 fun SharedBottomBar() {
     val navController = LocalNavController.current

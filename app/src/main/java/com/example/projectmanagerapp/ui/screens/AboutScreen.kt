@@ -24,6 +24,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.projectmanagerapp.ui.components.MainLayout
 
+/**
+ * About screen.
+ *
+ * Displays information about the app and its developer.
+ * Includes a header with an icon, app title, description,
+ * and developer information card.
+ */
 @Composable
 fun About(){
     MainLayout(
@@ -34,6 +41,7 @@ fun About(){
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
+            // Header section
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -57,12 +65,14 @@ fun About(){
                 )
             }
 
+            // App title
             Text(
                 text = "Active Portfolio",
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = FontWeight.Bold
             )
 
+            // About section
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -86,6 +96,7 @@ fun About(){
                 }
             }
 
+            // Designer section
             Card(
                 modifier = Modifier
                     .fillMaxWidth()

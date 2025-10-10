@@ -31,6 +31,13 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.ui.graphics.Color
 import com.example.projectmanagerapp.routes.Routes
 
+/**
+ * Project creation screen.
+ *
+ * Allows users to add a new project by entering a title, description, and image URL.
+ * Validates input before saving and navigates to the project detail page after creation.
+ * Shows a snackbar message if the title is missing.
+ */
 @Composable
 fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
     val navController = LocalNavController.current
@@ -39,7 +46,7 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
     var imageUrl by rememberSaveable { mutableStateOf("") }
     var projectId by rememberSaveable { mutableIntStateOf(0) }
 
-    // Add scope
+    // Add scope for validation input
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -50,6 +57,7 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
         Column (
             modifier = Modifier.padding(20.dp)
         ){
+            // project title input
             OutlinedTextField(
                 value = title,
                 onValueChange = {title = it},
@@ -69,6 +77,7 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
                     cursorColor = MaterialTheme.colorScheme.primary
                 )
             )
+            // project description input
             OutlinedTextField(
                 value = description,
                 onValueChange = {description = it},
@@ -83,7 +92,7 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
                     .padding(bottom = 12.dp),
                 shape = RoundedCornerShape(12.dp),
             )
-
+            // project image Url input
             OutlinedTextField(
                 value = imageUrl,
                 onValueChange = {imageUrl = it},
@@ -99,7 +108,7 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
                     .padding(bottom = 20.dp),
                 shape = RoundedCornerShape(12.dp),
             )
-
+            // add button for project creation
             Button(
                 onClick = {
                     if (title.isNotBlank()){
@@ -124,7 +133,3 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun ProjectCreationPreview() = PreviewManager { ProjectCreation () }
