@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Terminal
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -77,7 +78,8 @@ fun About(){
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp),
-                shape = MaterialTheme.shapes.medium
+                shape = MaterialTheme.shapes.medium,
+                elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
             ){
                 Column(
                     modifier = Modifier.padding(20.dp)
@@ -101,7 +103,8 @@ fun About(){
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top=4.dp, start = 20.dp, end = 20.dp),
-                shape = MaterialTheme.shapes.medium
+                shape = MaterialTheme.shapes.medium,
+                elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
             ){
                 Column(
                     modifier = Modifier.padding(20.dp)
@@ -122,6 +125,7 @@ fun About(){
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(24.dp)
                         )
+
                         Spacer(modifier = Modifier.padding(10.dp))
 
                         Text(

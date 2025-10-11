@@ -31,4 +31,9 @@ sealed class Routes (val routes : String) {
      * Route for viewing About screen.
      */
     object About : Routes("AboutRoute")
+
+    /**
+     * Route for viewing Profile screen.
+     */
+    object Profile : Routes ("ProfileRoute")
 }

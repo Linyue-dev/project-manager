@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Archive
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Archive
 import androidx.compose.material.icons.outlined.Home
@@ -24,11 +28,14 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.projectmanagerapp.routes.LocalNavController
+import com.example.projectmanagerapp.routes.Router
 import com.example.projectmanagerapp.routes.Routes
 
 /**
@@ -69,6 +76,7 @@ fun MainLayout(
 @Composable
 fun SharedTopBar(screenTitle : String) {
     val navController = LocalNavController.current
+
     CenterAlignedTopAppBar(
         title =
             {
@@ -111,7 +119,8 @@ fun SharedTopBar(screenTitle : String) {
 @Composable
 fun SharedBottomBar() {
     val navController = LocalNavController.current
-
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
     BottomAppBar {
         Row (
             modifier = Modifier.padding(horizontal = 8.dp)
@@ -123,7 +132,10 @@ fun SharedBottomBar() {
                 onClick = {navController.navigate(Routes.About.routes)}
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Home,
+                    imageVector = if (currentRoute == Routes.About.routes)
+                        Icons.Filled.Home
+                    else
+                        Icons.Outlined.Home,
                     contentDescription = "About",
                     modifier = Modifier
                         .size(36.dp),
@@ -135,7 +147,10 @@ fun SharedBottomBar() {
                 onClick = {navController.navigate(Routes.AddProject.routes)}
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Add,
+                    imageVector = if (currentRoute == Routes.AddProject.routes)
+                        Icons.Filled.Add
+                    else
+                        Icons.Outlined.Add,
                     contentDescription = "Add Project",
                     modifier = Modifier
                         .size(36.dp),
@@ -147,7 +162,10 @@ fun SharedBottomBar() {
                 onClick = {navController.navigate(Routes.ProjectLibrary.routes)}
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Archive,
+                    imageVector = if (currentRoute == Routes.ProjectLibrary.routes)
+                        Icons.Filled.Archive
+                    else
+                        Icons.Outlined.Archive,
                     contentDescription = "Project List",
                     modifier = Modifier
                         .size(36.dp),
@@ -156,11 +174,14 @@ fun SharedBottomBar() {
             }
 
             IconButton(
-                onClick = {navController.navigate(Routes.About.routes)}
+                onClick = {navController.navigate(Routes.Profile.routes)}
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Person,
-                    contentDescription = "About",
+                    imageVector = if (currentRoute == Routes.Profile.routes)
+                        Icons.Filled.Person
+                    else
+                        Icons.Outlined.Person,
+                    contentDescription = "Profile",
                     modifier = Modifier
                         .size(36.dp),
                     tint = MaterialTheme.colorScheme.primary

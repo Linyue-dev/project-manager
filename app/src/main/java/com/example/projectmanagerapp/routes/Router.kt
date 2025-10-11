@@ -14,6 +14,7 @@ import com.example.projectmanagerapp.ui.screens.ProjectCreation
 import com.example.projectmanagerapp.ui.screens.ProjectDetail
 import com.example.projectmanagerapp.ui.screens.ProjectLibrary
 import com.example.projectmanagerapp.ui.screens.About
+import com.example.projectmanagerapp.ui.screens.Profile
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 
 
@@ -53,7 +54,7 @@ fun Router(){
         ){
             composable (Routes.AddProject.routes) {ProjectCreation(projectViewModel = projectViewModel) }
             composable(
-                route = Routes.ProjectDetail.routes, //route = "DetailRoute/{projectId}",
+                route = Routes.ProjectDetail.routes,
                 arguments = listOf(
                     navArgument("projectId") {type = NavType.IntType}
                 )
@@ -66,6 +67,7 @@ fun Router(){
             }
             composable (Routes.ProjectLibrary.routes) { ProjectLibrary (projectViewModel = projectViewModel)}
             composable (Routes.About.routes) { About() }
+            composable (Routes.Profile.routes) { Profile()}
         }
     }
 }

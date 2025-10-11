@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
@@ -19,16 +20,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectmanagerapp.routes.LocalNavController
 import com.example.projectmanagerapp.ui.components.MainLayout
-import com.example.projectmanagerapp.ui.preview.PreviewManager
 import com.example.projectmanagerapp.viewmodels.ProjectViewModel
 import kotlinx.coroutines.launch
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.ui.graphics.Color
 import com.example.projectmanagerapp.routes.Routes
 
 /**
@@ -71,11 +68,6 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
                     .fillMaxWidth()
                     .padding(bottom = 12.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = MaterialTheme.colorScheme.primary,
-                    unfocusedBorderColor = Color.Gray,
-                    cursorColor = MaterialTheme.colorScheme.primary
-                )
             )
             // project description input
             OutlinedTextField(
@@ -126,7 +118,11 @@ fun ProjectCreation (projectViewModel: ProjectViewModel = viewModel()){
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(top = 8.dp),
-                shape = RoundedCornerShape(12.dp)
+                shape = MaterialTheme.shapes.large,
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 4.dp,
+                    pressedElevation = 12.dp
+                )
             ) {
                 Text("add")
             }

@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -71,7 +72,7 @@ fun EmptyProjectList(){
         modifier = Modifier.padding(20.dp)
             .fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ){
         Column(
             modifier = Modifier
@@ -106,7 +107,13 @@ fun EmptyProjectList(){
             Spacer(modifier = Modifier.height(20.dp))
 
             Button(
-                onClick = { navController.navigate(Routes.AddProject.routes)}
+                onClick = { navController.navigate(Routes.AddProject.routes) },
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 4.dp,
+                    pressedElevation = 12.dp,
+                    hoveredElevation = 3.dp,
+                ),
+                shape = MaterialTheme.shapes.large,
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Add,
@@ -141,7 +148,7 @@ fun ProjectList(
                     .fillMaxWidth()
                     .clickable {onProjectReviewClick(project)},
                 shape = MaterialTheme.shapes.large,
-                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
             ){
                 Column {
                     Text(
